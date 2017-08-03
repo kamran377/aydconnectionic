@@ -1,0 +1,37 @@
+<!--
+  Generated template for the NewCertificationPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color='primary'>
+    <ion-title>New Certification</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+	<form class="list" [formGroup]="certificationForm">
+		<div class="fields-div-transparent">
+			<ion-item>
+				<ion-label floating color="white">Certification Title</ion-label>
+				<ion-input type="name" formControlName="name" [class.invalid]="!certificationForm.controls.name.valid && (certificationForm.controls.name.dirty || submitAttempt)"></ion-input>
+			</ion-item>
+			<div *ngIf="formErrors.name">
+			  <div *ngFor="let errors of formErrors.name" >
+				<p class="alert alert-danger">{{ errors }}<p>
+			  </div>
+			</div>
+			<br/>
+			<img class="certficateImage" src="data:image/png;base64,{{imageStr}}" *ngIf="imageStr" />
+			<br/>
+			<button ion-button small (click)="takePicture()">Take a Picture</button>
+			<br/><br/>
+			<button ion-button full class="login-btn" color="light" (click)="submitInfo()">Save</button>
+			<button ion-button full color="secondary" (click)="back()">Back</button>
+		</div>
+	</form>
+</ion-content>

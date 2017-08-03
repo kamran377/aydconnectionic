@@ -1,0 +1,92 @@
+<!--
+  Generated template for the ProfilePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color='primary'>
+    <ion-title>
+		<span *ngIf="!userDetails">Profile</span>
+		<span *ngIf="userDetails">{{userDetails.first_name }} {{userDetails.last_name }}</span>
+	</ion-title>
+	<ion-buttons end>
+		<button ion-button (click)="cancel()">
+			Close
+		</button>
+	</ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+	<div class="header-image">
+		<div class="image-holder" *ngIf="userDetails && userDetails.imageUrl">
+			<img src="{{userDetails.imageUrl}}" />
+		</div>
+		<div class='avator' *ngIf="userDetails && !userDetails.imageUrl">
+			<div class='avator'><span class="initials">{{userDetails.first_name.charAt(0)}}</span></div>
+		</div>
+		
+	</div>
+	<div *ngIf="userDetails" class="main-content">
+		<ion-list  *ngIf="userDetails">
+			<ion-item>
+				<ion-icon name="contact" item-start></ion-icon>
+				<h2>
+					{{userDetails.first_name }} {{userDetails.last_name }}
+					<ion-icon md="ios-person" ios="ios-person" isActive="{{verificationData.identity}}"></ion-icon>
+					<ion-icon md="ios-pin" ios="ios-pin" isActive="{{verificationData.address}}"></ion-icon>
+					<ion-icon *ngIf="userDetails && userDetails.user_type_id == 1" md="ios-card" ios="ios-card" isActive="{{verificationData.payment}}"></ion-icon>
+				
+				</h2>
+			</ion-item>
+			<ion-item>
+				<ion-icon name="information-circle" item-start></ion-icon>
+				<h2>{{userDetails.userType }}</h2>
+			</ion-item>
+			<ion-item>
+				<ion-icon name="pin" item-start></ion-icon>
+				<h2>{{userDetails.city }}</h2>
+			</ion-item>
+			<ion-item>
+				<ion-icon name="infinite" item-start></ion-icon>
+				<h2>{{user.reviews }}</h2>
+			</ion-item>
+			<ion-item>
+				<ion-icon name="star" item-start></ion-icon>
+				<ion-rating [numStars]="5" [readOnly]="true" value ="{{user.feedbackScore}}">
+						</ion-rating>
+			</ion-item>
+		</ion-list>
+		<h2 class='heading'>About Me</h2>
+		<p>
+			{{userDetails.description }}
+		</p>
+		<hr/>
+		<div *ngIf="userDetails && userDetails.user_type_id == 2">
+			<h2 class='heading'>Skills</h2>
+			<ion-list *ngIf="userSkills">
+				<ion-item *ngFor="let skill of userSkills">{{skill}}</ion-item>
+			</ion-list>
+			<h2 class=''>Woking days</h2>
+			<ion-list *ngIf="userWorkingDays">
+				<ion-item *ngFor="let day of userWorkingDays">{{day}}</ion-item>
+			</ion-list>
+			
+			<h2 class='heading'>Certifications</h2>
+			<ion-card color='primary' no-padding *ngFor="let certificate of userCertifications">
+				<img src="{{certificate.imageUrl}}"/>
+				<ion-card-content>
+					<ion-card-title>
+						{{certificate.name}}
+					</ion-card-title>
+				</ion-card-content>
+			</ion-card>
+			
+		</div>
+	</div>
+	
+</ion-content>

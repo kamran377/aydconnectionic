@@ -1,0 +1,28 @@
+<!--
+  Generated template for the WorkingDaysPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color='primary'>
+    <ion-title>Working Days</ion-title>
+  </ion-navbar>
+
+</ion-header>
+<ion-content padding>
+	<form class="list" [formGroup]="daysForm" *ngIf="days">
+		<div class='fields-div-transparent'>	
+			<ion-list >
+				 <ion-item *ngFor="let day of days">
+					<ion-label>{{day.name}}</ion-label>
+					<ion-checkbox [formControlName]="day.id"></ion-checkbox>
+				</ion-item>
+			</ion-list>
+		</div>
+	</form>
+	<button ion-button full class="login-btn" color="light" (click)="submitInfo()">Save</button>
+	<button ion-button full color="secondary" (click)="back()">Back</button>
+</ion-content>
+

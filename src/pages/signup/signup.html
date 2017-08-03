@@ -1,0 +1,79 @@
+<!--
+  Generated template for the SignupPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+
+
+<ion-content padding>
+	<h1 class='heading'>Signup!</h1>
+	<h6 class='sub-heading'>Enter your details to get started with us</h6>
+	<form class="list" [formGroup]="authForm">
+		<div class='fields-div-transparent'>
+			<ion-item>
+				<ion-label floating color="white">You want to join as</ion-label>
+				<ion-select formControlName="userType" [class.invalid]="!authForm.controls.userType.valid && (authForm.controls.userType.dirty || submitAttempt)">
+					<ion-option value="2">Talent</ion-option>
+					<ion-option value="1">Employer</ion-option>
+				</ion-select>	
+			</ion-item>
+			<div *ngIf="formErrors.userType">
+			  <div *ngFor="let errors of formErrors.userType" >
+				<p class="alert alert-danger">{{ errors }}<p>
+			  </div>
+			</div>
+			<ion-item>
+				<ion-label floating color="white">Email</ion-label>
+				<ion-input type="email" formControlName="email" [class.invalid]="!authForm.controls.email.valid && (authForm.controls.email.dirty || submitAttempt)"></ion-input>
+			</ion-item>
+			<div *ngIf="formErrors.email">
+			  <div *ngFor="let errors of formErrors.email" >
+				<p class="alert alert-danger">{{ errors }}<p>
+			  </div>
+			</div>
+			<ion-item>
+				<ion-label floating color="white">Password</ion-label>
+				<ion-input type="password" validateEqual="confirmPassword" reverse="true" formControlName="password" [class.invalid]="!authForm.controls.password.valid && (authForm.controls.password.dirty || submitAttempt)"></ion-input>
+			</ion-item>
+			<div *ngIf="formErrors.password">
+			  <div *ngFor="let errors of formErrors.password" >
+				<p class="alert alert-danger">{{ errors }}<p>
+			  </div>
+			</div>
+			<ion-item>
+				<ion-label floating color="white">Confirm Password</ion-label>
+				<ion-input type="password" validateEqual="password" reverse="false" formControlName="confirmPassword" [class.invalid]="!authForm.controls.confirmPassword.valid && (authForm.controls.confirmPassword.dirty || submitAttempt)"></ion-input>
+			</ion-item>
+			<div *ngIf="formErrors.confirmPassword">
+			  <div *ngFor="let errors of formErrors.confirmPassword" >
+				<p class="alert alert-danger">{{ errors }}<p>
+			  </div>
+			</div>
+			<ion-item>
+				<ion-label floating color="white">First Name</ion-label>
+				<ion-input type="text" formControlName="firstName" [class.invalid]="!authForm.controls.firstName.valid && (authForm.controls.firstName.dirty || submitAttempt)"></ion-input>
+			</ion-item>
+			<div *ngIf="formErrors.firstName">
+			  <div *ngFor="let errors of formErrors.firstName" >
+				<p class="alert alert-danger">{{ errors }}<p>
+			  </div>
+			</div>
+			<ion-item>
+				<ion-label floating color="white">Last Name</ion-label>
+				<ion-input type="text" formControlName="lastName" [class.invalid]="!authForm.controls.lastName.valid && (authForm.controls.lastName.dirty || submitAttempt)"></ion-input>
+			</ion-item>
+			<div *ngIf="formErrors.lastName">
+			  <div *ngFor="let errors of formErrors.lastName" >
+				<p class="alert alert-danger">{{ errors }}<p>
+			  </div>
+			</div>
+			
+			<br/><br/>
+		</div>
+		<button ion-button full class="login-btn" color="light" (click)="register()">Register</button>
+		
+		<button ion-button full color="secondary" (click)="backToLogin()">Back to Login</button>
+	</form>
+</ion-content>

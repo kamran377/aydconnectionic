@@ -1,0 +1,58 @@
+<!--
+  Generated template for the BrowsePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+
+
+<ion-content padding>
+	<h1 class='heading'>Connect Map</h1>
+	<h6 class='sub-heading'>View Connect map or latest jobs as per your skills and location</h6>
+
+	<br/>
+	
+	<div *ngIf="user && user.user_type_id == 2">
+		<ion-segment mode="ios" [(ngModel)]="type">
+			<ion-segment-button (ionSelect)="segmentSelect('map')" value="map">
+			  Connect Map
+			</ion-segment-button>
+			<ion-segment-button (ionSelect)="segmentSelect('search')" value="search">
+			  Latest Jobs
+			</ion-segment-button>
+		</ion-segment>
+	</div>
+	<br/><br/>
+	<div [ngSwitch]="type" *ngIf="user && user.user_type_id == 2">
+		<ion-scroll scrollX="true" *ngSwitchCase="'map'">
+			<h6  class='sub-heading'>For best view, please use the landscape mode to view the connect map </h6>
+			<iframe (load)="iframeLoad()" id="mapFrame" sandbox="allow-forms allow-scripts" width="850" height="360" [src]="mapUrl" frameborder="0" allowfullscreen>
+			</iframe>
+		</ion-scroll>
+		<div *ngSwitchCase="'search'">
+			<ion-list>
+				<h6 class='sub-heading'>These are latest jobs posted as per your skills and location</h6>
+				<ion-item (click)="viewJob(job.id)" color='secondary' icon-end *ngFor="let job of jobs">
+					<h2>{{job.name}}</h2>
+					<p icon-left><ion-icon name="pricetags"></ion-icon>{{job.skills}}</p>
+					<p icon-left><ion-icon name="paper"></ion-icon>{{job.bids}}</p>
+					<p icon-left><ion-icon name="clock"></ion-icon>{{job.created}}</p>
+					<ion-icon name="arrow-forward" item-end></ion-icon>
+				</ion-item>
+				<br/>
+			</ion-list>
+			<button ion-button full *ngIf="jobs"  (click)="goToLatestJobsPage()">View All Latest Jobs</button>
+
+		</div>
+	</div>
+	<div *ngIf="user && user.user_type_id == 1">
+		<button ion-button full *ngIf="jobs"  (click)="goToSearchTalentPage()">Search for Talent</button>
+
+		<ion-scroll scrollX="true">
+			<h6  class='sub-heading'>For best view, please use the landscape mode to view the connect map </h6>
+			<iframe (load)="iframeLoad()" id="mapFrame" sandbox="allow-forms allow-scripts" width="850" height="360" [src]="mapUrl" frameborder="0" allowfullscreen>
+			</iframe>
+		</ion-scroll>
+	</div>
+</ion-content>

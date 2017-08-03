@@ -1,0 +1,50 @@
+<!--
+  Generated template for the JobDescriptionPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+	<ion-toolbar color='primary'>
+		<ion-buttons left>
+			<button ion-button outline (click)="back()">
+				Back
+			</button>
+		</ion-buttons>
+		<ion-title><span *ngIf="job">{{job.name}}</span></ion-title>
+		<ion-buttons right>
+			<button ion-button outline (click)="update()">
+				Update
+			</button>
+		</ion-buttons>
+	</ion-toolbar>
+</ion-header>
+<ion-content padding>
+	
+	<ion-list  *ngIf="job">
+		<ion-item>
+			<ion-icon name="bookmark" item-start></ion-icon>
+			<h2>{{job.status}}</h2>
+		</ion-item>
+		<ion-item>
+			<ion-icon name="calculator" item-start></ion-icon>
+			<h2>{{job.type}}</h2>
+		</ion-item>
+		<ion-item>
+			<ion-icon name="pin" item-start></ion-icon>
+			<h2>{{job.location}}</h2>
+		</ion-item>
+		<ion-item>
+			<ion-icon name="pricetags" item-start></ion-icon>
+			<h2>{{job.skills}}</h2>
+		</ion-item>
+		<ion-item>
+			<ion-icon name="book" item-start></ion-icon>
+			<h2>{{job.description}}</h2>
+		</ion-item>
+		<ion-item>
+			<ion-icon name="clock" item-start></ion-icon>
+			<h2>{{job.created}}</h2>
+		</ion-item>
+	</ion-list>
+</ion-content>

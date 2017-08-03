@@ -1,0 +1,78 @@
+<!--
+  Generated template for the SearchTalentPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color='primary'>
+    <ion-title>Search Talent</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+	<h6  class='sub-heading'>You can search for talent based on skill, location and account verification status</h6>
+	<div class="fields-div-transparent">
+		<div #map id="map"></div>
+		<ion-item>
+			<ion-label color="white">Toggle Filter</ion-label>
+			<ion-toggle [(ngModel)]="show" ></ion-toggle>
+		</ion-item>
+		<hr/>
+		<div *ngIf="show == true">
+			<ion-item>
+				<ion-label floating color="white">Enter Locations</ion-label>
+				<ion-input type='text' (focus)="showAddressModal()" [(ngModel)]="address"></ion-input>
+			</ion-item>
+			<ion-tags-input [once]="'true'" [placeholder]="''" [(ngModel)]="addresses" [once]="'true'" [mode]="'secondary'" (onChange)="onChange($event)"></ion-tags-input>
+			<ion-item>
+				<ion-label floating color="white">Enter skills</ion-label>
+				<ion-input type="text"
+					(focus)="showSkillsModal()" 
+					[(ngModel)]="skill">
+				</ion-input>
+			</ion-item>
+			<ion-tags-input [once]="'true'" [placeholder]="''" [(ngModel)]="skills" [once]="'true'" [mode]="'secondary'" (onChange)="onChange($event)"></ion-tags-input>
+			<ion-item>
+				<ion-label color="white">Identity Verified</ion-label>
+				<ion-toggle [(ngModel)]="identityVerified" ></ion-toggle>
+			</ion-item>
+			<hr/>
+			<button ion-button full class="login-btn" color="light" (click)="applyFilter()">Apply Filter</button>
+			<hr/>
+		</div>
+		
+		<div *ngIf="talents && talents.length > 0">
+			<h6 class='sub-heading'>
+				Talents matching your search criteria
+			</h6>
+			<ion-card color='light' *ngFor="let talent of talents">
+				<ion-card-header>
+					<h2>
+						{{talent.userDetails.name}}
+						<ion-icon md="ios-person" ios="ios-person" isActive="{{talent.verificationData.identity}}"></ion-icon>
+						<ion-icon md="ios-pin" ios="ios-pin" isActive="{{talent.verificationData.address}}"></ion-icon>
+				
+					</h2>
+				</ion-card-header>
+				<ion-card-content>
+					<p icon-left><ion-icon name="pricetags"></ion-icon> {{talent.userSkills}}</p>
+					<p icon-left><ion-icon name="pin"></ion-icon> {{talent.userDetails.city}}, {{talent.userDetails.state}}</p>
+					<p icon-left><ion-icon name="infinite"></ion-icon> {{talent.user.reviews}} Reviews</p>
+					<p>
+						<ion-rating [numStars]="5" [readOnly]="true" value ="{{talent.user.feedbackScore}}">
+						</ion-rating>
+					<p>
+					<button ion-button full color="primary" (click)="viewProfile(talent.user.id, talent.userDetails.user_type_id)">View Profile</button>
+				</ion-card-content>
+			</ion-card>
+			
+			<ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+				<ion-infinite-scroll-content></ion-infinite-scroll-content>
+			</ion-infinite-scroll>
+		</div>
+	</div>
+</ion-content>

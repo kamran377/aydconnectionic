@@ -1,0 +1,71 @@
+<!--
+  Generated template for the InfoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>PERSONAL INFORMATION</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+	<div class='banner' *ngIf="imageSrc">
+		<img src="{{imageSrc}}" />
+		<br/>
+		<button ion-button small (click)="takePicture()">Change Profile Picture</button>
+	
+	</div>
+	<div class='banner avator' *ngIf="!imageSrc">
+		<div class='avator'><span class="initials">{{userDetails.first_name.charAt(0)}}</span></div>
+		<br/>
+		<button ion-button small (click)="takePicture()">Change Profile Picture</button>
+	</div>
+	<form class="list" [formGroup]="infoForm">
+		<div class='fields-div-transparent'>
+			<ion-item>
+				<ion-label floating color="white">First Name</ion-label>
+				<ion-input [readonly]="isReadonly()" type='text' formControlName="firstName" [class.invalid]="!infoForm.controls.firstName.valid && (infoForm.controls.firstName.dirty || submitAttempt)"></ion-input>
+			</ion-item>
+			<div *ngIf="formErrors.firstName">
+			  <div *ngFor="let errors of formErrors.firstName" >
+				<p class="alert alert-danger">{{ errors }}<p>
+			  </div>
+			</div>
+			<ion-item>
+				<ion-label floating color="white">Last Name</ion-label>
+				<ion-input [readonly]="isReadonly()" type='text' formControlName="lastName" [class.invalid]="!infoForm.controls.lastName.valid && (infoForm.controls.lastName.dirty || submitAttempt)"></ion-input>
+			</ion-item>
+			<div *ngIf="formErrors.lastName">
+			  <div *ngFor="let errors of formErrors.lastName" >
+				<p class="alert alert-danger">{{ errors }}<p>
+			  </div>
+			</div>
+			<ion-item>
+				<ion-label floating color="white">Mobile</ion-label>
+				<ion-input type='tel' [readonly]="isReadonly()"  formControlName="mobile" [class.invalid]="!infoForm.controls.mobile.valid && (infoForm.controls.mobile.dirty || submitAttempt)"></ion-input>
+			</ion-item>
+			<div *ngIf="formErrors.mobile">
+			  <div *ngFor="let errors of formErrors.mobile" >
+				<p class="alert alert-danger">{{ errors }}<p>
+			  </div>
+			</div>
+			<ion-item>
+				<ion-label floating color="white">About me</ion-label>
+				<ion-textarea [readonly]="isReadonly()" formControlName="description" [class.invalid]="!infoForm.controls.description.valid && (infoForm.controls.description.dirty || submitAttempt)"></ion-textarea>
+			</ion-item>
+			<div *ngIf="formErrors.description">
+			  <div *ngFor="let errors of formErrors.description" >
+				<p class="alert alert-danger">{{ errors }}<p>
+			  </div>
+			</div>
+			<br/><br/>
+		</div>
+		<button ion-button full class="login-btn" color="light" (click)="submitInfo()">Save</button>
+		<button *ngIf="!identityVerificationRequest" ion-button full color="light" (click)="verifyIdentity()">Verify Identity</button>
+		<button *ngIf="identityVerificationRequest && identityVerificationRequest.status_id != 2" ion-button full color="light" (click)="viewStatus()">Pending Verification - View Status</button>
+		<button *ngIf="identityVerificationRequest && identityVerificationRequest.status_id == 2" ion-button full color="success">Identity Verified</button>
+		<button ion-button full color="secondary" (click)="back()">Back</button>
+	</form>
+</ion-content>

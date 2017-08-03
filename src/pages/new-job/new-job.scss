@@ -1,0 +1,27 @@
+page-new-job {
+	.add-image {
+		height: 100px;
+		width: 100px;
+		border: 2px solid #fff;
+		display: inline-block;
+		float: left;
+		margin: 0;
+		margin-left: 10px;
+		margin-bottom:10px;
+		overflow: scroll; 
+		white-space: nowrap;
+		position:relative;
+	}
+	.add-image img { 
+		width:100%;
+		height:100%
+	}
+	
+	.add-image .remove {
+		position: absolute;
+		color: red;
+		right: -10px;
+		background: transparent;
+		top: -8px;
+	}
+}

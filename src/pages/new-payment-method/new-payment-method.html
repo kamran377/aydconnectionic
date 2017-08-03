@@ -1,0 +1,85 @@
+<!--
+  Generated template for the NewPaymentMethodPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar color='primary'>
+    <ion-title>New Payment Method</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+	
+		<ion-list radio-group no-lines (ionChange)="ionSelect()"  [(ngModel)]="accountType">
+			
+			<ion-item>
+				<ion-label>Credit card</ion-label>
+				<ion-radio value="card" ></ion-radio>
+			</ion-item>
+			<ion-item>
+				<ion-label>Bank Account</ion-label>
+				<ion-radio value="account" ></ion-radio>
+			</ion-item>
+		</ion-list>
+		<div *ngIf="accountType == 'card'">
+			<div class="fields-div-transparent">
+				<h3 class="label">Enter you Card Details</h3>
+				<div #cardElement class='field'></div>
+				
+				<br/><br/>
+				
+				<button ion-button full class="login-btn" color="light" (click)="submitInfo()">Save</button>
+				<button ion-button full color="secondary" (click)="back()">Back</button>
+			</div>
+		</div>
+		<div *ngIf="accountType == 'account'">
+			<form class="list" [formGroup]="bankAccountForm">
+				<div class="fields-div-transparent">
+					<ion-item>
+						<ion-label floating color="white">Account Holder Name</ion-label>
+						<ion-input type="account_holder_name" formControlName="account_holder_name" [class.invalid]="!bankAccountForm.controls.account_holder_name.valid && (bankAccountForm.controls.account_holder_name.dirty || submitAttempt)"></ion-input>
+					</ion-item>
+					<div *ngIf="formErrors.account_holder_name">
+					  <div *ngFor="let errors of formErrors.account_holder_name" >
+						<p class="alert alert-danger">{{ errors }}<p>
+					  </div>
+					</div>
+					<ion-item>
+						<ion-label floating color="white">Account Number</ion-label>
+						<ion-input type="account_number" formControlName="account_number" [class.invalid]="!bankAccountForm.controls.account_number.valid && (bankAccountForm.controls.account_number.dirty || submitAttempt)"></ion-input>
+					</ion-item>
+					<div *ngIf="formErrors.account_number">
+					  <div *ngFor="let errors of formErrors.account_number" >
+						<p class="alert alert-danger">{{ errors }}<p>
+					  </div>
+					</div>
+					<ion-item>
+						<ion-label floating color="white">Routing Number</ion-label>
+						<ion-input type="routing_number" formControlName="routing_number" [class.invalid]="!bankAccountForm.controls.routing_number.valid && (bankAccountForm.controls.routing_number.dirty || submitAttempt)"></ion-input>
+					</ion-item>
+					<div *ngIf="formErrors.routing_number">
+					  <div *ngFor="let errors of formErrors.routing_number" >
+						<p class="alert alert-danger">{{ errors }}<p>
+					  </div>
+					</div>
+					<ion-item>
+						<ion-label floating color="white">Account Holder Type</ion-label>
+						<ion-select formControlName="account_holder_type" [class.invalid]="!bankAccountForm.controls.account_holder_type.valid && (bankAccountForm.controls.account_holder_type.dirty || submitAttempt)">
+							<ion-option value="individual">Individual</ion-option>
+							<ion-option value="company">Company</ion-option>
+						</ion-select>	
+					</ion-item>
+					<div *ngIf="formErrors.account_holder_type">
+					  <div *ngFor="let errors of formErrors.account_holder_type" >
+						<p class="alert alert-danger">{{ errors }}<p>
+					  </div>
+					</div>
+					<br/><br/>
+					<button ion-button full class="login-btn" color="light" (click)="submitAccountInfo()">Save</button>
+					<button ion-button full color="secondary" (click)="back()">Back</button>
+				</div>
+			</form>
+		</div>
+	
+</ion-content>

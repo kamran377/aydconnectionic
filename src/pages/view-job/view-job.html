@@ -1,0 +1,38 @@
+<!--
+  Generated template for the ViewJobPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color='primary'>
+    <ion-title>Job Details</ion-title>
+	<ion-buttons end>
+		<button ion-button outline (click)="openModal()">Modal</button>
+	</ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+	<h2 *ngIf='job' class="heading">
+		{{job.name}}
+	</h2>
+	<ion-list  *ngIf="job">
+		<ion-item>
+			<p icon-left *ngIf="job" color="white" ><ion-icon name="bookmark"></ion-icon>{{job.status}}</p>
+		</ion-item>	
+		<ion-item>
+			<p icon-left *ngIf="job" color="white" ><ion-icon name="calculator"></ion-icon>{{job.type}}</p>
+		</ion-item>
+		<ion-item>		
+			<p icon-left *ngIf="job" color="white" ><ion-icon name="paper"></ion-icon>{{job.bids}}</p>
+			<p icon-left *ngIf="job" color="white" ><ion-icon name="cash"></ion-icon>{{job.bidsAyg}}</p>
+		</ion-item>
+	</ion-list>
+	<p *ngIf="job">
+		{{job.description }}
+	</p>				
+</ion-content>

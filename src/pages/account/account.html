@@ -1,0 +1,51 @@
+<!--
+  Generated template for the AccountPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-content padding>
+	<h1 class='heading'>My Profile</h1>
+	<h6 class='sub-heading'>You can change your account details here</h6>
+	
+	<ion-list>
+		<button ion-item icon-end (click)="goToPersonalInfo()">
+			<h2>Personal Information</h2>
+			<p>You can view and update your personal information here</p>
+			<ion-icon name="arrow-forward" item-end></ion-icon>
+		</button>
+		<button ion-item  icon-end (click)="goToAddressInfo()">
+			<h2>Address</h2>
+			<p>You can view and update your address here</p>
+			<ion-icon name="arrow-forward" item-end></ion-icon>
+		</button>
+		<button ion-item  icon-end (click)="goToChangePassword()" *ngIf="user && user.social_service == null ">
+			<h2>Change Password</h2>
+			<p>You can change your password here</p>
+			<ion-icon name="arrow-forward" item-end></ion-icon>
+		</button>
+		<button ion-item  icon-end (click)="goToPaymentMethods()">
+			<h2>Payment Methods</h2>
+			<p>You can manage your payment methods here</p>
+			<ion-icon name="arrow-forward" item-end></ion-icon>
+		</button>
+		<button ion-item  icon-end (click)="goToUserSkills()" *ngIf="user && user.user_type_id == 2 ">
+			<h2>Skills</h2>
+			<p>You can manage your skills here</p>
+			<ion-icon name="arrow-forward" item-end></ion-icon>
+		</button>
+		<button ion-item  icon-end (click)="goToWorkingDays()" *ngIf="user && user.user_type_id == 2 ">
+			<h2>Working Days</h2>
+			<p>You can manage your working days here</p>
+			<ion-icon name="arrow-forward" item-end></ion-icon>
+		</button>
+		<button ion-item  icon-end (click)="goToCertifications()" *ngIf="user && user.user_type_id == 2 ">
+			<h2>Certifications</h2>
+			<p>You can manage your certifications here</p>
+			<ion-icon name="arrow-forward" item-end></ion-icon>
+		</button>
+		
+	</ion-list>
+	
+<button ion-button full color="danger" (click)="logout()">Logout</button>
+</ion-content>

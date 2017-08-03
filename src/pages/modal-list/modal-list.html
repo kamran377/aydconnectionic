@@ -1,0 +1,15 @@
+<!--
+  Generated template for the ModalListPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<ion-content padding color="primary">
+	<ion-list>
+		<ion-item color='secondary' tappable (click)="chooseItem(skill)" icon-end *ngFor="let skill of skills">
+			<h2>{{skill.name}}</h2>
+			<ion-icon name="arrow-forward" item-end></ion-icon>
+		</ion-item>
+	</ion-list>
+</ion-content>

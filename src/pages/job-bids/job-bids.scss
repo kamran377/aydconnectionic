@@ -1,0 +1,23 @@
+page-job-bids {
+	h2, h3 {
+		margin-top:0px !important;
+	}
+	
+	h3 {
+		color:#fff !important;
+	}
+	h3 .icon {
+		line-height:1.5em !important;
+	}
+	
+	ion-card-content {
+		padding-top: 10px !important;
+		border-bottom: 1px solid #fff;
+	}
+	ion-card-header {
+		border-bottom: 1px solid #fff;
+	}
+	p {
+		color:#fff;
+	}
+}

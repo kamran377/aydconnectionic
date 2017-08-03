@@ -1,0 +1,21 @@
+page-projects {
+	ion-card-content {
+		padding-top: 10px !important;
+		border-bottom: 1px solid #fff;
+	}
+	ion-card-header {
+		border-bottom: 1px solid #fff;
+	}
+	p {
+		color:#fff;
+	}
+	.filterButton span {
+		display: inline-block;
+		text-align: left;
+		margin-top: 1rem;
+	}
+	
+	.filterButton .icon{
+		float:right !important;
+	}
+}

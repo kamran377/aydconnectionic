@@ -1,0 +1,79 @@
+<!--
+  Generated template for the NewJobPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<ion-content padding>
+	<h1 class='heading'>Post New Job</h1>
+	
+	<div class="fields-div-transparent">
+		
+		<div #map id="map"></div>
+		<form class="list" [formGroup]="jobForm">
+			<ion-item>
+				<ion-label floating color="white">Job Title</ion-label>
+				<ion-input type='text' formControlName="title" [class.invalid]="!jobForm.controls.title.valid && (jobForm.controls.title.dirty || submitAttempt)"></ion-input>
+			</ion-item>
+			<div *ngIf="formErrors.title">
+			  <div *ngFor="let errors of formErrors.title" >
+				<p class="alert alert-danger">{{ errors }}<p>
+			  </div>
+			</div>
+			<ion-item>
+				<ion-label floating color="white">You want this job to be</ion-label>
+				<ion-select formControlName="jobType" [class.invalid]="!jobForm.controls.jobType.valid && (jobForm.controls.jobType.dirty || submitAttempt)">
+					<ion-option value="2">Hourly</ion-option>
+					<ion-option value="1">Fixed Price</ion-option>
+				</ion-select>	
+			</ion-item>
+			<div *ngIf="formErrors.jobType">
+			  <div *ngFor="let errors of formErrors.jobType" >
+				<p class="alert alert-danger">{{ errors }}<p>
+			  </div>
+			</div>
+			<ion-item>
+				<ion-label floating color="white">What do you want in this job</ion-label>
+				<ion-textarea  formControlName="description" [class.invalid]="!jobForm.controls.description.valid && (jobForm.controls.description.dirty || submitAttempt)"></ion-textarea>
+			</ion-item>
+			<div *ngIf="formErrors.description">
+			  <div *ngFor="let errors of formErrors.description" >
+				<p class="alert alert-danger">{{ errors }}<p>
+			  </div>
+			</div>
+			<ion-item>
+				<ion-label floating color="white">Enter job address</ion-label>
+				<ion-input type='text' (focus)="showAddressModal()" formControlName="address" [class.invalid]="!jobForm.controls.address.valid && (jobForm.controls.address.dirty || submitAttempt)"></ion-input>
+			</ion-item>
+			<div *ngIf="formErrors.description">
+			  <div *ngFor="let errors of formErrors.description" >
+				<p class="alert alert-danger">{{ errors }}<p>
+			  </div>
+			</div>
+			<ion-item>
+				<ion-label floating color="white">Enter skills</ion-label>
+				<ion-input type="text"
+					(focus)="showModal()" 
+					formControlName="keyword">
+				</ion-input>
+			</ion-item>
+		</form>
+		<ion-tags-input [once]="'true'" [placeholder]="''" [(ngModel)]="skills" [once]="'true'" [mode]="'secondary'" (onChange)="onChange($event)"></ion-tags-input>
+		<br/><br/>
+		<div>
+			<button  class="add-image" *ngFor="let imageStr of imageStrs">
+				<img src="data:image/png;base64,{{imageStr}}" />
+				<button ion-button icon-only (click)="deleteEntry(imageStr)" class="remove"><ion-icon name="close-circle"></ion-icon></button>
+			</button>
+			<button  ion-button icon-only class="add-image" color='primary' (click)="takePicture()">
+					<ion-icon name="camera"></ion-icon>
+			</button>
+		</div>
+		<br/>
+		<button ion-button full class="login-btn" color="light" (click)="submitInfo()">Save</button>
+		<button ion-button full color="secondary" (click)="back()">Back</button>
+	
+	</div>
+			
+</ion-content>

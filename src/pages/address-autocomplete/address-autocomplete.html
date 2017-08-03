@@ -1,0 +1,19 @@
+<!--
+  Generated template for the AddressAutocompletePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-toolbar color='primary'>
+    <ion-title>{{label}}</ion-title>
+    <ion-searchbar [(ngModel)]="autocomplete.query" [showCancelButton]="true" (ionInput)="updateSearch()" (ionCancel)="dismiss()"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let item of autocompleteItems" tappable (click)="chooseItem(item)">
+      {{ item.description }}
+    </ion-item>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,9 @@
+page-modal-list {
+	h2 {
+		margin-top:0px !important;
+	}
+	
+	.ion-page {
+		background: map-get($colors, secondary) !important;
+	}
+}

@@ -1,0 +1,45 @@
+<!--
+  Generated template for the ProjectsFilterPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color='primary'>
+    <ion-title>Jobs Filter</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+	<ion-list radio-group [(ngModel)]="projectType">
+		<ion-list-header>
+			Select the type of job you want to see
+		</ion-list-header>
+		<ion-item>
+			<ion-label>All Jobs</ion-label>
+			<ion-radio value="10"></ion-radio>
+		</ion-item>
+		<ion-item>
+			<ion-label>Open Jobs</ion-label>
+			<ion-radio value="1"></ion-radio>
+		</ion-item>
+		<ion-item>
+			<ion-label>Jobs in progress</ion-label>
+			<ion-radio value="2"></ion-radio>
+		</ion-item>
+		<ion-item>
+			<ion-label>Completed Jobs</ion-label>
+			<ion-radio value="3"></ion-radio>
+		</ion-item>
+		<ion-item>
+			<ion-label>Archived Jobs</ion-label>
+			<ion-radio value="4"></ion-radio>
+		</ion-item>
+	</ion-list>
+	<br/>
+	<button ion-button full class="login-btn" (click)="applyFilter()">Apply Filter</button>
+		
+</ion-content>

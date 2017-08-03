@@ -1,0 +1,113 @@
+<!--
+  Generated template for the AddressPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header >
+  <ion-navbar color="primary">
+    <ion-title>ADDRESS</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+	<div class='fields-div-transparent'>
+		<ion-list>
+			<ion-item>
+				<ion-label floating color="white">Enter your address</ion-label>
+				<ion-input type="text"
+					(focus)="showModal()" 
+					[(ngModel)]="address.place">
+				</ion-input>
+			</ion-item>
+		</ion-list>
+		<div id='map'>&nbsp;</div>  
+		<form class="list" [formGroup]="addressForm" *ngIf="address.set==true">
+			<ion-item>
+				<ion-label floating color="white">Full Address</ion-label>
+				<ion-input  [readonly]="isReadonly()" type='text' formControlName="fullAddress" [class.invalid]="!addressForm.controls.fullAddress.valid && (addressForm.controls.fullAddress.dirty || submitAttempt)"></ion-input>
+			</ion-item>
+			<div *ngIf="formErrors.fullAddress">
+			  <div *ngFor="let errors of formErrors.fullAddress" >
+				<p class="alert alert-danger">{{ errors }}<p>
+			  </div>
+			</div>
+			
+			<ion-item>
+				<ion-label floating color="white">Street</ion-label>
+				<ion-input [readonly]="isReadonly()" type='text' formControlName="street" [class.invalid]="!addressForm.controls.street.valid && (addressForm.controls.street.dirty || submitAttempt)"></ion-input>
+			</ion-item>
+			<div *ngIf="formErrors.street">
+			  <div *ngFor="let errors of formErrors.street" >
+				<p class="alert alert-danger">{{ errors }}<p>
+			  </div>
+			</div>
+			
+			<ion-item>
+				<ion-label floating color="white">Neighbourhood</ion-label>
+				<ion-input [readonly]="isReadonly()" type='text' formControlName="neighbourhood" [class.invalid]="!addressForm.controls.neighbourhood.valid && (addressForm.controls.neighbourhood.dirty || submitAttempt)"></ion-input>
+			</ion-item>
+			<div *ngIf="formErrors.neighbourhood">
+			  <div *ngFor="let errors of formErrors.neighbourhood" >
+				<p class="alert alert-danger">{{ errors }}<p>
+			  </div>
+			</div>
+			
+			<ion-item>
+				<ion-label floating color="white">Postal Code</ion-label>
+				<ion-input [readonly]="isReadonly()" type='text' formControlName="postalCode" [class.invalid]="!addressForm.controls.postalCode.valid && (addressForm.controls.postalCode.dirty || submitAttempt)"></ion-input>
+			</ion-item>
+			<div *ngIf="formErrors.postalCode">
+			  <div *ngFor="let errors of formErrors.postalCode" >
+				<p class="alert alert-danger">{{ errors }}<p>
+			  </div>
+			</div>
+			
+			<ion-item>
+				<ion-label floating color="white">City</ion-label>
+				<ion-input [readonly]="isReadonly()" type='text' formControlName="city" [class.invalid]="!addressForm.controls.city.valid && (addressForm.controls.city.dirty || submitAttempt)"></ion-input>
+			</ion-item>
+			<div *ngIf="formErrors.city">
+			  <div *ngFor="let errors of formErrors.city" >
+				<p class="alert alert-danger">{{ errors }}<p>
+			  </div>
+			</div>
+			
+			<ion-item>
+				<ion-label floating color="white">State</ion-label>
+				<ion-input [readonly]="isReadonly()" type='text' formControlName="state" [class.invalid]="!addressForm.controls.state.valid && (addressForm.controls.state.dirty || submitAttempt)"></ion-input>
+			</ion-item>
+			<div *ngIf="formErrors.state">
+			  <div *ngFor="let errors of formErrors.state" >
+				<p class="alert alert-danger">{{ errors }}<p>
+			  </div>
+			</div>
+			
+			<ion-item class='hidden'>
+				<ion-label floating color="white">Latitude</ion-label>
+				<ion-input [readonly]="isReadonly()" type='text' formControlName="lat" [class.invalid]="!addressForm.controls.lat.valid && (addressForm.controls.lat.dirty || submitAttempt)"></ion-input>
+			</ion-item>
+			<div *ngIf="formErrors.lat">
+			  <div *ngFor="let errors of formErrors.lat" >
+				<p class="alert alert-danger">{{ errors }}<p>
+			  </div>
+			</div>
+			
+			<ion-item class='hidden'>
+				<ion-label floating color="white">Longitude</ion-label>
+				<ion-input [readonly]="isReadonly()" type='text' formControlName="lng" [class.invalid]="!addressForm.controls.lng.valid && (addressForm.controls.lng.dirty || submitAttempt)"></ion-input>
+			</ion-item>
+			<div *ngIf="formErrors.lng">
+			  <div *ngFor="let errors of formErrors.lng" >
+				<p class="alert alert-danger">{{ errors }}<p>
+			  </div>
+			</div>
+			<br/><br/>
+		</form>
+		
+		<button ion-button full class="login-btn" color="light" (click)="submitInfo()">Save</button>
+		<button *ngIf="address.set==true && !addressVerificationRequest" ion-button full class="login-btn" color="secondary" (click)="verifyAddress()">Verify Address</button>
+		<button *ngIf="addressVerificationRequest && addressVerificationRequest.status_id != 2" ion-button full color="secondary" (click)="viewStatus()">Pending Verification - View Status</button>
+		<button *ngIf="addressVerificationRequest && addressVerificationRequest.status_id == 2" ion-button full color="success">Address Verified</button>
+		<button ion-button full color="secondary" (click)="back()">Back</button>
+	</div>	
+</ion-content>
